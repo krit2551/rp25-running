@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ - ประชาทัศน์ Rach 25</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 340px; text-align: center; }
+        h2 { color: #1e3d59; margin-bottom: 5px; margin-top: 0; }
+        p { color: #666; font-size: 14px; margin-bottom: 20px; }
+        .form-group { text-align: left; margin-bottom: 15px; }
+        label { font-size: 14px; color: #333; font-weight: bold; display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        .btn { background: #17b978; color: white; border: none; padding: 12px; border-radius: 6px; width: 100%; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .btn:hover { background: #139a63; }
+        .error { color: #ff4d4d; font-size: 14px; margin-bottom: 15px; text-align: left; background: #ffe6e6; padding: 8px; border-radius: 4px; border-left: 4px solid #ff4d4d; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>ระบบลงคะแนนเดิน-วิ่ง</h2>
+        <p>กิจกรรมประกวดระเบียบแถวหอนอน</p>
+        
+        {% if error %}
+            <div class="error">⚠️ {{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label>ชื่อผู้ใช้งาน (Username)</label>
+                <input type="text" name="username" placeholder="กรอกชื่อผู้ใช้" required>
+            </div>
+            <div class="form-group">
+                <label>รหัสผ่าน (Password)</label>
+                <input type="password" name="password" placeholder="กรอกรหัสผ่าน" required>
+            </div>
+            <button type="submit" class="btn">เข้าสู่ระบบกรรมการ</button>
+        </form>
+    </div>
+</body>
+</html>
