@@ -1,1 +1,63 @@
-
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ลงคะแนนหอนอน - Rach 25</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        h2 { text-align: center; color: #1e3d59; margin-bottom: 25px; margin-top: 10px; }
+        .dorm-block { border-bottom: 1px dashed #ddd; padding: 15px 0; }
+        .dorm-block:last-child { border-bottom: none; }
+        .dorm-title { font-size: 16px; font-weight: bold; color: #17b978; margin-bottom: 10px; }
+        .score-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        label { font-size: 14px; color: #555; }
+        select { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; width: 100px; background-color: #fff; }
+        .btn-submit { background: #1e3d59; color: white; border: none; padding: 15px; border-radius: 8px; width: 100%; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .btn-submit:hover { background: #17b978; }
+        .header-links { display: flex; justify-content: space-between; margin-bottom: 20px; background: #eef1f6; padding: 10px; border-radius: 8px; }
+        .link { color: #007bff; text-decoration: none; font-size: 14px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-links">
+            <a href="/dashboard" class="link">📊 ดูผลลัพธ์แดชบอร์ด</a>
+            <a href="/logout" class="link" style="color: #ff4d4d;">🚪 ออกจากระบบ</a>
+        </div>
+        <h2>📝 ฟอร์มลงคะแนนกรรมการ</h2>
+        
+        <form method="POST">
+            {% for dorm in dorms %}
+            <div class="dorm-block">
+                <div class="dorm-title">🏢 {{ dorm.name }}</div>
+                
+                <div class="score-row">
+                    <label>1. การตรงต่อเวลา (1-5 คะแนน)</label>
+                    <select name="punc_{{ dorm.id }}">
+                        {% for i in range(1, 6) %}<option value="{{ i }}">{{ i }}</option>{% endfor %}
+                    </select>
+                </div>
+                
+                <div class="score-row">
+                    <label>2. ระเบียบแถวรอบที่ 1 (1-5 คะแนน)</label>
+                    <select name="r1_{{ dorm.id }}">
+                        {% for i in range(1, 6) %}<option value="{{ i }}">{{ i }}</option>{% endfor %}
+                    </select>
+                </div>
+                
+                <div class="score-row">
+                    <label>3. ระเบียบแถวรอบที่ 2 (1-5 คะแนน)</label>
+                    <select name="r2_{{ dorm.id }}">
+                        {% for i in range(1, 6) %}<option value="{{ i }}">{{ i }}</option>{% endfor %}
+                    </select>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <button type="submit" class="btn-submit">💾 บันทึกและส่งคะแนนทั้งหมด</button>
+        </form>
+    </div>
+</body>
+</html>
