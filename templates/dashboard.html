@@ -1,1 +1,51 @@
-
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปผลคะแนน - Rach 25</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; margin: 0; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        h2 { text-align: center; color: #1e3d59; margin-top: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        th, td { padding: 12px; text-align: center; border-bottom: 1px solid #eee; }
+        th { background: #1e3d59; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .top-rank { font-weight: bold; color: #17b978; background: #e8f8f2 !important; }
+        .btn-back { display: inline-block; background: #6c757d; color: white; padding: 10px 15px; border-radius: 6px; text-decoration: none; font-size: 14px; margin-bottom: 15px; font-weight: bold; }
+        .btn-back:hover { background: #5a6268; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/score" class="btn-back">⬅️ กลับไปหน้าลงคะแนน</a>
+        <h2>📊 ตารางอันดับคะแนนประกวดเดิน-วิ่ง</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>อันดับ</th>
+                    <th>หอนอน</th>
+                    <th>ตรงเวลา (เฉลี่ย)</th>
+                    <th>รอบ 1 (เฉลี่ย)</th>
+                    <th>รอบ 2 (เฉลี่ย)</th>
+                    <th>คะแนนรวม</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in summary %}
+                <tr class="{% if loop.index <= 3 %}top-rank{% endif %}">
+                    <td>🏆 {{ loop.index }}</td>
+                    <td style="text-align: left;">{{ row.dorm_name }}</td>
+                    <td>{{ row.avg_punc }}</td>
+                    <td>{{ row.avg_r1 }}</td>
+                    <td>{{ row.avg_r2 }}</td>
+                    <td><strong>{{ row.total }}</strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
